@@ -1,0 +1,88 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Rushikesh: Unbelievable Facts</title>
+	<link rel="stylesheet" href="themes/facts.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.2.min.css" />
+	<script src="themes/jquery-1.10.2.min.js"></script>
+	<script src="themes/jquery.mobile-1.4.2.min.js"></script>
+	<script src="themes/facts.js"></script>
+	<style type="text/css">
+		.ui-header{
+			background-color: transparent !important;
+			color:honeydew !important;
+			border-bottom: none !important;
+			text-shadow: none !important;
+		}
+		#content{
+			background-color: transparent;
+			display:inline-block;
+			margin: 0 auto;
+			font-size: 30px;	
+			width:80%;		
+			height:98%;
+			text-align: center;
+			vertical-align: middle;
+			color:honeydew;
+		}
+		#page{
+			background-repeat:repeat;
+			background-image:url('themes/images/congruent_outline.png');
+		}
+	</style>
+	<script type="text/javascript">
+		var cnt = 0, start =0, end = 1586;
+		$(document).ready(function(){
+			cnt = randomNumBetweenRange(start,end);
+			updateContent();
+			$("#page").on("swipeleft", function(event){
+				//console.log("swipeleft");
+				cnt++;
+				updateContent();
+			});
+
+			$("#page").on("swiperight", function(event){
+				//console.log("swiperight");
+				cnt--;
+				updateContent();
+			});			
+		});
+
+		function randomNumBetweenRange(min,max){
+		    return Math.floor(Math.random()*(max-min+1)+min);
+		}
+
+    	function updateContent(){	    		
+			if(cnt<start){
+				cnt = end-1;
+			}
+			if(cnt>end){
+				cnt = start;
+			}
+	    	$("#content").html(facts[cnt]);
+	    	$("#factTitle").html("Fact #"+cnt);
+    	}
+
+	</script>
+</head>
+<body>
+	<div data-role="page" data-theme="a" id="page">
+		<div data-role="header" data-position="fixed">
+			<a href="#popupBasic" data-position-to="window" data-transition="fade" data-rel="popup" id="infoicon" data-icon="info" class="ui-btn-right" data-iconpos="notext">Info</a>
+			<h1 id="factTitle"></h1>
+		</div>
+		<div data-role="content" data-theme="a" id="content">
+
+		</div>
+	    <div data-role="popup" id="popupBasic" data-overlay-theme="a" class="ui-content" >
+	    	<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+			<p>Amazing Facts App.<p>
+			<p>Swipe left or right to see more Facts.<p>
+			<p>Amaze your friends with these amazing facts. There are over 1500 facts @ your disposal.<p>
+			<p>Created By: <a href="http://www.rushis.com">Rushi</a><p>
+		</div>		
+	</div>
+</body>
+</html>
